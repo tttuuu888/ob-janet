@@ -51,7 +51,7 @@
   :type 'string)
 
 (defcustom org-babel-janet-nil-to 'hline
-  "Replace 'nil' in janet tables with this before returning."
+  "Replace `nil' in janet tables with this before returning."
   :group 'org-babel
   :version "27.0.50"
   :package-version '(Org . "9.3.4")
@@ -121,10 +121,10 @@ Returns the wrapped body as a string."
       (setq var-defs (ob-janet--vars-to-values vars)))
     (mapconcat #'identity
                (append
-                (when prologue (list (ob-janet--expand-fmt pro)))
+                (when prologue (list (ob-janet--expand-fmt prologue)))
                 var-defs
                 (list body)
-                (when epilogue (list (ob-janet--expand-fmt epi))))
+                (when epilogue (list (ob-janet--expand-fmt epilogue))))
                "\n")))
 
 (defun org-babel-execute:janet (body params)
